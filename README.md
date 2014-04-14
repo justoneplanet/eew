@@ -13,3 +13,10 @@ config.json
       "token_secret"    : "your token secret"
     }
 
+launch
+------------------------------------------------
+
+    ulimit -n 32768
+    forever start -a --spinSleepTime=10000 -w --watchDirectory=./ -l ~/.forever/eew80.log server.js 80
+
+
