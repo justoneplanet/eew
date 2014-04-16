@@ -1,0 +1,10 @@
+{
+    "name"        : "eew-server-for-chrome-extention"
+,   "version"     : "0.0.1"
+,   "private"     : true
+,   "dependencies": {
+        "twitter"   : "0.1.18"
+      , "websocket" : "1.0.8"
+    }
+}
+
