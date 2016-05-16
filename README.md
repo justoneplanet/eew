@@ -5,8 +5,9 @@
 ## Installation
 
     npm install
+    npm install -g forever
 
-### config.json
+### config.json (for Twitter API)
 
     {
       "consumer_key"    : "your consumer key",
