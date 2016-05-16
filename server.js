@@ -23,14 +23,22 @@ server.listen(PORT, function() {
 });
 var wsServer = new WebSocketServer({
   "httpServer"            : server,
-  "autoAcceptConnections" : true
+  "autoAcceptConnections" : false
 });
 wsServer.on(
-  'connect',
-  function(connection){
-    connection.sendUTF('{"status" : "accepted"}');
+  'request',
+  function(request) {
+    const origin = request.origin;
+    if (!origin.indexOf('chrome-extension://') === 0) {
+      request.reject();
+      util.puts('[' + new Date() + ']Illegal client: ' + request);
+      return;
+    }
+    var connection = request.accept(null, origin);// @TODO a protocol name should be assigned.
+    connection.sendUTF('{"status" : "accepted", "origin": "' + origin + '"}');
   }
 );
+
 setInterval(function () {wsServer.broadcastUTF("");}, 30 * 1000);
 
 // build twitter connection
