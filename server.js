@@ -49,7 +49,7 @@ var twit = new twitter({
   "access_token_secret" : TOKEN_SECRET,
   "stream_base"         : "https://stream.twitter.com/1.1"
 });
-twit.stream('user', {"with" : FOLLOWING_ID}, function(stream) {
+twit.stream('statuses/filter', {"follow" : FOLLOWING_ID}, function(stream) {
   stream.on('data', function(data) {
     if (data['user'] && data['user']['id'] === FOLLOWING_ID) {
       data['source']                                     = undefined;
