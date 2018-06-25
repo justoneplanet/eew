@@ -4,6 +4,7 @@
 
 ## Installation
 
+    sudo apt-get install nodejs-legacy npm
     npm install
     npm install -g forever
 
