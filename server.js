@@ -113,6 +113,12 @@ twit.stream('statuses/filter', {"follow" : FOLLOWING_ID}, function(stream) {
     text = text.replace(/■■緊急地震速報\(第1報\)■■\s*/, '');
     text = text.replace(/\s#.*/, '');
     data['text'] = text;
+    data['eew'] = {
+      'datetime': datetime,
+      'place': place,
+      'scale': scale,
+      'magnitude': magnitude,
+    };
     util.puts('[' + new Date() + ']EEW ' + JSON.stringify(data));
     wsServer.broadcastUTF(JSON.stringify(data));
   }); 
