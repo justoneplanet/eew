@@ -103,6 +103,16 @@ twit.stream('statuses/filter', {"follow" : FOLLOWING_ID}, function(stream) {
     if (text.indexOf('■■緊急地震速報(第1報)■■') === -1) {
       return;
     }
+    var scale = text.match(/最大震度\s*([1-9])/)[1];
+    if (scale < 3) {
+      return;
+    }
+    var magnitude = text.match(/M([1-9]+(.[1-9]+))/)[1];
+    var datetime = text.match(/([0-9]{4}\/[0-9]{2}\/[0-9]{2} [0-9]{2}:[0-9]{2}:[0-9]{2})発生/)[1];
+    var place = text.match(/■■緊急地震速報\(第1報\)■■\s*(.*)で地震/)[1];
+    text = text.replace(/■■緊急地震速報\(第1報\)■■\s*/, '');
+    text = text.replace(/\s#.*/, '');
+    data['text'] = text;
     util.puts('[' + new Date() + ']EEW ' + JSON.stringify(data));
     wsServer.broadcastUTF(JSON.stringify(data));
   }); 
