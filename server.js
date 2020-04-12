@@ -1,6 +1,6 @@
 const CONF = require('./config.json')
 const PORT = (process.argv[2])? process.argv[2] : 8080;
-const FOLLOWING_ID = 16052553;
+const FOLLOWING_ID = 85251743;
 const CONSUMER_KEY    = CONF['consumer_key'];
 const CONSUMER_SECRET = CONF['consumer_secret'];
 const TOKEN_KEY       = CONF['token_key'];
