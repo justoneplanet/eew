@@ -99,6 +99,10 @@ twit.stream('statuses/filter', {"follow" : FOLLOWING_ID}, function(stream) {
     data['user']['following']                          = undefined;
     data['user']['follow_request_sent']                = undefined;
     data['user']['notifications']                      = undefined;
+    var text = data['text'];
+    if (text.indexOf('■■緊急地震速報(第1報)■■') === -1) {
+      return;
+    }
     util.puts('[' + new Date() + ']EEW ' + JSON.stringify(data));
     wsServer.broadcastUTF(JSON.stringify(data));
   }); 
