@@ -119,6 +119,9 @@ twit.stream('statuses/filter', {"follow" : FOLLOWING_ID}, function(stream) {
       'scale': scale,
       'magnitude': magnitude,
     };
+    // overwrite user id for old clients.
+    data['user']['id'] = 16052553;
+    data['user']['id_str'] = "16052553";
     util.puts('[' + new Date() + ']EEW ' + JSON.stringify(data));
     wsServer.broadcastUTF(JSON.stringify(data));
   }); 
