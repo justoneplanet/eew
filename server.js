@@ -8,6 +8,7 @@ const TOKEN_SECRET = CONF['token_secret'];
 
 var util = require('util')
     , http = require('http')
+    , os = require("os")
     , twitter = require('twitter')
     , WebSocketServer = require('websocket').server
     ;
@@ -35,7 +36,7 @@ wsServer.on(
             return;
         }
         var connection = request.accept(null, origin);// @TODO a protocol name should be assigned.
-        connection.sendUTF('{"status" : "accepted", "origin": "' + origin + '"}');
+        connection.sendUTF('{"status" : "accepted", "origin": "' + origin + '", "hostname" : "' + os.hostname() + '"}');
     }
 );
 
