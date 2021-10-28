@@ -23,9 +23,12 @@
 
 ## Launch
 
+    # check if it works.
     node server.js
 
+    # production
     ulimit -n 32768
     forever start -a --spinSleepTime=10000 -w --watchDirectory=./ -l ~/.forever/eew80.log server.js 80
 
-
+    # Count established connections
+    lsof -i:80 | grep "ESTABLISED" | wc -l
